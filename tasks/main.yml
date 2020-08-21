@@ -1,2 +1,25 @@
 ---
 # tasks file for sec-rhel-prod
+    - name: enable service firewall 
+      services: 
+          name: "{{ item }}"
+          status: started
+          enable: yes   
+      loop:
+          - firewalld     
+
+    - name: Enable SELinux
+      selinux:
+        policy: targeted
+        state: enforcing
+
+    - name: desabilitar servico de producao 
+      services: 
+          name: "{{ item }}"
+          status: stopped
+          enable: no   
+      loop:
+          - postfix
+          - nfs
+          - smbd
+        
