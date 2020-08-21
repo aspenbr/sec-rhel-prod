@@ -3,7 +3,7 @@
     - name: enable service firewall 
       systemd: 
           name: "{{ item }}"
-          status: started
+          state: started
           enabled: yes   
       loop:
           - firewalld     
@@ -16,7 +16,7 @@
     - name: desabilitar servico de producao 
       systemd: 
           name: "{{ item }}"
-          status: stopped
+          state: stopped
           enabled: no   
       loop:
           - postfix
