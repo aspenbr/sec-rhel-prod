@@ -1,10 +1,10 @@
 ---
 # tasks file for sec-rhel-prod
     - name: enable service firewall 
-      service: 
+      systemd: 
           name: "{{ item }}"
           status: started
-          enable: yes   
+          enabled: yes   
       loop:
           - firewalld     
 
@@ -14,10 +14,10 @@
         state: enforcing
 
     - name: desabilitar servico de producao 
-      service: 
+      systemd: 
           name: "{{ item }}"
           status: stopped
-          enable: no   
+          enabled: no   
       loop:
           - postfix
           - nfs
